@@ -176,6 +176,7 @@ public class BankingSystem {
             double amount = Double.parseDouble(amountString);
             if (amount > 0) {
                 Transfer transfer = new Transfer();
+                transfer.setAmount(amount);
                 transfer.setFromUser(customer);
                 transfer.setToUser(transferTo);
                 transfer.sendTransfer();

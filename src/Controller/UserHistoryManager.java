@@ -58,13 +58,19 @@ public class UserHistoryManager {
     }
 
     private void listAllTransactions() {
-        
+
+        if (customer.getTransactionHistory().size() == 0) {
+            System.out.println("No transactions yet!");
+        }
         for (Transaction transaction : customer.getTransactionHistory()) {
             System.out.println(transaction);
         }
     }
 
     private void listOnlyDeposits() {
+        if (customer.getTransactionHistory().size() == 0) {
+            System.out.println("No transactions yet!");
+        }
         for (Transaction transaction : customer.getTransactionHistory()) {
             if (transaction.getAmount() > 0)
                 System.out.println(transaction);
@@ -72,6 +78,9 @@ public class UserHistoryManager {
     }
 
     private void listOnlyWithdrawals() {
+        if (customer.getTransactionHistory().size() == 0) {
+            System.out.println("No transactions yet!");
+        }
         for (Transaction transaction : customer.getTransactionHistory()) {
             if (transaction.getAmount() < 0)
                 System.out.println(transaction);
@@ -82,7 +91,7 @@ public class UserHistoryManager {
     private void showFilterMenu() {
         System.out.println("Okay, let's get technical. What's the start date for your search? (Eg.: 2017.01.01");
         String fromFilter = scanner.nextLine();
-        SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy.MM.dd");
 
         try {
             Date fromdate = ft.parse(fromFilter);
@@ -99,6 +108,9 @@ public class UserHistoryManager {
 
     private void listDateFilteredTransactions(Date fromdate, Date toDate) {
         System.out.println("Here are your transactions for the given range:");
+        if (customer.getTransactionHistory().size() == 0) {
+            System.out.println("No transactions yet!");
+        }
         for (Transaction transaction : customer.getTransactionHistory()) {
             if (transaction.getDate().getTime() > fromdate.getTime() && transaction.getDate().getTime() < toDate.getTime())
                 System.out.println(transaction);

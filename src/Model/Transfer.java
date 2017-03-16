@@ -13,7 +13,7 @@ public class Transfer extends Transaction {
 
     public void setFromUser(Customer fromUser) throws Exception {
 
-        fromUser.setBalance(amount*-1);
+        fromUser.setBalance(fromUser.getBalance() - amount);
         this.fromUser = fromUser;
     }
 
@@ -23,7 +23,7 @@ public class Transfer extends Transaction {
 
     public void setToUser(Customer toUser){
         try {
-            toUser.setBalance(amount);
+            toUser.setBalance(toUser.getBalance() + amount);
         }
         catch (Exception e){
             System.out.println("You can't transfer a negative value!");

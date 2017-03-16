@@ -125,6 +125,10 @@ public class BankingSystem {
         String amountString = scanner.nextLine();
         double amount = Double.parseDouble(amountString);
 
+        if(amount< 0){
+            System.out.println("You can't deposit a negative value, sorry!");
+            return;
+        }
         Exchange deposit = new Exchange();
         deposit.setAmount(amount);
         try {
@@ -170,13 +174,12 @@ public class BankingSystem {
             System.out.println("Okay! How much should we transfer?");
             String amountString = scanner.nextLine();
             double amount = Double.parseDouble(amountString);
-            if(amount>0) {
+            if (amount > 0) {
                 Transfer transfer = new Transfer();
                 transfer.setFromUser(customer);
                 transfer.setToUser(transferTo);
                 transfer.sendTransfer();
-            }
-            else{
+            } else {
                 System.out.println("You can't transfer a debt! That's not how this works! ");
                 return;
             }
@@ -189,9 +192,9 @@ public class BankingSystem {
     }
 
     private void handleHistoryAction() {
-       UserHistoryManager manager =  UserHistoryManager.getInstance();
-       manager.setCustomer(customer);
-       manager.startHistoryManager();
+        UserHistoryManager manager = UserHistoryManager.getInstance();
+        manager.setCustomer(customer);
+        manager.startHistoryManager();
     }
 
 
